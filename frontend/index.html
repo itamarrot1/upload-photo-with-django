@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="display"></div>
+    <script>
+        const SERVER = 'http://127.0.0.1:8000/'
+        axios(SERVER).then(res=> console.log(res))
+
+        const get_cars=async()=>{
+            const res = await axios(SERVER + 'get_cars')
+
+            const cars = res.data;
+            const car_detailes = cars.map(car => `<div> ${car.name}, ${car.comapny},<img src = ${SERVER+car.image}></div>`)
+            document.getElementById("display").innerHTML= car_detailes
+            }
+                
+        get_cars()
+    </script>
+</body>
+</html>
